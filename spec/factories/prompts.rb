@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :prompt do
+    title "DBC"
+    description "Where's my t-shirt!?!?!?!?!?!?"
   end
 end

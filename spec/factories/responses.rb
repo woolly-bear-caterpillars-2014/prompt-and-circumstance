@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :response do
+    content 'My name is yeff'
   end
 end
