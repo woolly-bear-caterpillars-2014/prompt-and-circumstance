@@ -1,9 +1,9 @@
 <%= link_to "Create Prompt", new_prompt_path %>
 
 <ul class="prompts">
-<% @prompts.each do |prompt| %>
-  <li>
-    <%= link_to prompt.title, prompt  %>
-  </li>
-<% end %>
+  <% @prompts.each do |prompt| %>
+    <li>
+      <%= link_to prompt.title, prompt  %>
+    </li>
+  <% end %>
 </ul>

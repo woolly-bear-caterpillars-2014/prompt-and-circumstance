@@ -1,13 +1,13 @@
 
 <h2><%= @prompt.title %></h2>
-<p><%= @prompt.description %></p>
+  <p><%= @prompt.description %></p>
 
 <h2>Responses</h2>
-<ul>
-<% @prompt.responses.each do |response| %>
-  <li>
-    <%= response.body %>
-  </li>
-<% end %>
-</ul>
+  <ul>
+    <% @prompt.responses.each do |response| %>
+      <li>
+        <%= response.body %>
+      </li>
+    <% end %>
+  </ul>
 <%= render 'responses/form', :prompt => @prompt %>
