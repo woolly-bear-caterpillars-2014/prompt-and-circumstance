@@ -39,5 +39,5 @@ describe UsersController do
   #   it "creates a new session when a user logs in" do
   #     expect(session[:user_id]).to be
   #   end
-  end
+  #end
 end
