@@ -107,6 +107,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: $font-xlarge;
+  font-family: 'Lobster', cursive;
+  text-align: center;
 }
 
 h2 {
@@ -153,6 +155,8 @@ a {
 
 // FORMS AND BUTTONS
 input[type="submit"], input[type="button"], a.btn, button, .btn {
+  width: 100%;
+  text-align: center;
   line-height: 1;
   display: inline-block;
   font-family: $font-family;
