@@ -3,13 +3,8 @@ require 'rails_helper.rb'
 feature "user creates prompt" do
   scenario 'with valid inputs' do
 
-    visit "/prompts"
-    click_link "Create Prompt"
+    user_clicks_through_to_new_form_fills_title
 
-    expect(page).to have_content("New Prompt")
-    expect(current_url).to eq("http://www.example.com/prompts/new")
-
-    fill_in "Title", with: "Valid Title"
     fill_in "Description", with: "Valid description, etc etc pontificate"
     click_button "Create Prompt"
 
@@ -18,15 +13,40 @@ feature "user creates prompt" do
     expect(page).to have_content("Valid description, etc etc pontificate")
   end
 
-  # scenario 'with shitty form' do
-    # visit "/questions"
+  scenario 'with invalid inputs' do
 
-    # fill_in "Title", with: "very stupid cookie question"
-    # click_button "Create"
+    user_clicks_through_to_new_form_fills_title
 
-    # expect(page).not_to have_content("very stupid cookie question")
-    # expect(page).to have_content("Question failed to save.")
-    # expect(current_url).to eq("http://www.example.com/questions")
-  # end
+    # user doesn't fill in description... why so STUPID????
+
+    click_button "Create Prompt"
+    expect(current_url).to eq("http://www.example.com/prompts/new")
+    expect(page).to have_content("Invalid Prompt Submission, Please Try Again!")
+
+    expect(page).to have_content("Valid Title")
+    # because they input 1 field, can the info persist w/out save?
+
+  end
 
 end
+
+
+def user_clicks_through_to_new_form_fills_title
+  visit "/prompts"
+  click_link "Create Prompt"
+
+  expect(page).to have_content("New Prompt")
+  expect(current_url).to eq("http://www.example.com/prompts/new")
+
+  fill_in "Title", with: "Valid Title"
+end
+
+
+
+
+
+
+
+
+
+
