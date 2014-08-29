@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :prompts do
     resources :responses
   end
+
+  resources :users, only: [:new, :create]
+
   # Example resource route with options:
   #   resources :products do
   #     member do
