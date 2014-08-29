@@ -26,6 +26,7 @@ class PromptsController < ApplicationController
 
   def show
     @prompt = Prompt.find(params[:id])
+    @response = Response.new
   end
 
   private
