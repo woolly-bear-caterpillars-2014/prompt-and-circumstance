@@ -6,6 +6,6 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
 addons:
-  postgresql: 9.3.4
+  postgresql: "9.3"
 before_script:
   - psql -c 'create database prompt-and-circumstance_test' -U postgres
