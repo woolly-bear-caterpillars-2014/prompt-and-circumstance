@@ -4,18 +4,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @response = @user.responses.new(response_params)
-
-    if @response.save
-      redirect_to @user
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_url
     else
-      render :template => 'users/show'
+      render 'new'
     end
   end
 
   private
-  def response_params
-    params.require(:response).permit(:body)
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
   end
 end
