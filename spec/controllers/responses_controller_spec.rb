@@ -12,4 +12,14 @@ describe ResponsesController do
       }
     }.to change{ prompt.responses.count }.by(1)
   end
+
+  it "should create a new Response Object with invalid params" do
+    expect{
+      post :create,
+      :prompt_id => prompt.id,
+      :response => {
+        :body => ""
+      }
+    }.to change{ prompt.responses.count }.by(0)
+  end
 end

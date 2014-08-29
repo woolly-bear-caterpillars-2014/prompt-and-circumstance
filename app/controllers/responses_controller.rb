@@ -6,7 +6,7 @@ class ResponsesController < ApplicationController
     if @response.save
       redirect_to @prompt
     else
-      render :template => 'prompt/show'
+      render :template => 'prompts/show'
     end
   end
 
