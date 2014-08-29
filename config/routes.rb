@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create]
+
   # Example resource route with options:
   #   resources :products do
   #     member do
