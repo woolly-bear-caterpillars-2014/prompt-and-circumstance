@@ -1,0 +1,30 @@
+$background-color: white;
+
+$primary-color: rgb(94,139,108);
+
+$secondary-color: #3d5946;
+
+$raspberry: rgb(146, 42, 62);
+
+$dark-grey: rgb(29, 29, 29);
+
+$medium-grey: rgb(61, 68, 60);
+  // dark grey
+
+$base-text: $medium-grey;
+
+$light-grey: rgb(81, 88, 80);
+
+$lighter-grey: rgb(180, 188, 180);
+
+$highlight: rgb(94, 207, 161);
+  // teal green
+
+$error-color: rgb(146, 42, 62);
+  // reddish - sme for warning
+
+$warning-color: $error-color;
+
+$info-color: rgb(76, 158, 131);
+
+$success-color: $highlight;
