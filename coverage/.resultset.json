@@ -1,0 +1,52 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/apprentice/Desktop/prompt-and-circumstance/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/apprentice/Desktop/prompt-and-circumstance/app/helpers/prompts_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/apprentice/Desktop/prompt-and-circumstance/app/controllers/prompts_controller.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/apprentice/Desktop/prompt-and-circumstance/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/apprentice/Desktop/prompt-and-circumstance/app/models/prompt.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1409271066
+  }
+}
