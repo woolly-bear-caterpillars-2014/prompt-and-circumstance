@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PromptAndCircumstance</title>
-  <link href='http://fonts.googleapis.com/css?family=Arvo|Open+Sans:400italic,600italic,400,600,300' rel='stylesheet' type='text/css'>
+  <head>
+    <title>PromptAndCircumstance</title>
+      <link href='http://fonts.googleapis.com/css?family=Arvo|Open+Sans:400italic,600italic,400,600,300' rel='stylesheet' type='text/css'>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+  </head>
+    <body>
 
-  <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-  <% end -%>
+      <% flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, class: name %>
+      <% end -%>
 
-  <%= yield %>
+      <%= yield %>
 
-</body>
+    </body>
 </html>
