@@ -1,7 +1,7 @@
 class PromptsController < ApplicationController
 
   def index
-
+    @prompts = Prompt.order("created_at DESC")
   end
 
   def new
