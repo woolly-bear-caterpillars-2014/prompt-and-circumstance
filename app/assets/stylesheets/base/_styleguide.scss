@@ -5,21 +5,7 @@ body {
   color: $base-text;
 }
 
-header {
-  color:  $background-color;
-  background-color: $dark-grey;
 
-  nav{
-    color: $primary-color;
-
-    ul{
-
-      li{
-        color: $raspberry;
-      }
-    }
-  }
-}
 
 .base-bg {
   background-color: $base-text;
@@ -155,6 +141,8 @@ a {
 
 // FORMS AND BUTTONS
 input[type="submit"], input[type="button"], a.btn, button, .btn {
+  @include transition(0.15s);
+
   width: 100%;
   text-align: center;
   line-height: 1;
@@ -169,11 +157,6 @@ input[type="submit"], input[type="button"], a.btn, button, .btn {
   border-radius: 2px;
   margin: 5px 0;
   cursor: pointer;
-
-  -webkit-transition: all 0.15s ease-in-out;
-  -moz-transition: all 0.15s ease-in-out;
-  -ms-transition: all 0.15s ease-in-out;
-  -o-transition: all 0.15s ease-in-out;
 
   &:hover {
     background-color: $secondary-color;

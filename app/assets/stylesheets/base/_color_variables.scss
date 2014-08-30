@@ -1,5 +1,7 @@
 $background-color: white;
 
+
+/// Seafoam Green Color
 $primary-color: rgb(94,139,108);
 
 $secondary-color: #3d5946;
@@ -28,3 +30,14 @@ $warning-color: $error-color;
 $info-color: rgb(76, 158, 131);
 
 $success-color: $highlight;
+
+
+@mixin transition($duration) {
+  -webkit-transition: all $duration ease-in-out;
+  -moz-transition: all $duration ease-in-out;
+  -ms-transition: all $duration ease-in-out;
+  -o-transition: all $duration ease-in-out;
+}
+
+
+
