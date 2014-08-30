@@ -9,18 +9,32 @@ describe SessionsController do
   end
 
   context "POST login" do
-    let(:user){ FactoryGirl.create(:user) }
+    context "with valid params" do
+      let(:user){ FactoryGirl.create(:user) }
 
-    it "should create a new session" do
-      post :create, :action => :login, email: user.email, password: user.password
-      expect(session[:user_id]).to eq(user.id)
+      before do
+        post :create, :action => :login, email: user.email, password: user.password
+      end
+
+      it "creates a new session for user" do
+        expect(session[:user_id]).to eq(user.id)
+      end
+
+      it "redirects to index" do
+        expect(response).to redirect_to('/')
+      end
+    end
+
+    it "re-renders login page if invalid input" do
+      post :create, :action => :login, email: "", password: ""
+      expect(response).to render_template(:new)
     end
   end
 
   context "DELETE logout" do
     let(:user){ FactoryGirl.create(:user) }
 
-    it "should clear session" do
+    it "clears session" do
       delete :destroy, :action => :logout
       expect(session[:user_id]).to be_nil
     end
