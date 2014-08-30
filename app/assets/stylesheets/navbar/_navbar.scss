@@ -1,6 +1,17 @@
 header {
-  color:  $background-color;
-  background-color: $dark-grey;
+  // color:  $background-color;
+  // background-color: $dark-grey;
+
+  h1 a {
+    color: $primary-color;
+
+    &:hover {
+      color: $secondary-color;
+      @include transition(0.15s);
+      border-bottom: none;
+
+    }
+  }
 
   nav{
     color: $primary-color;
