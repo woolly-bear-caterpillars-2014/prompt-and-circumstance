@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     resources :responses
   end
 
-  post 'votes' => 'votes#create'
+  post 'promptsvotes' => 'votes#createPromptVote'
+
   # "/prompts/:prompt_id/votes"
   resources :users, only: [:new, :create]
 
