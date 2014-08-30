@@ -4,7 +4,7 @@
   <p><%= @prompt.description %></p>
   <h4>Score: <%= @prompt.score %></h4>
   <%= button_to 'up', {:controller => "votes", :action => "createPromptVote", vote: { votable_id: @prompt.id, polarity: 1, votable_type: @prompt.class}} %>
-  <button>down</button>
+  <%= button_to 'down', {:controller => "votes", :action => "createPromptVote", vote: { votable_id: @prompt.id, polarity: -1, votable_type: @prompt.class}} %>
 
 
 <h2>Responses</h2>

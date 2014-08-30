@@ -22,7 +22,20 @@ feature "User votes on prompt: " do
 
   end
 
-  scenario 'logged in user clicks downvote'
+  scenario 'logged in user clicks downvote' do
+
+    prompt
+    user
+
+    test_signup
+    user_clicks_through_to_show_prompt
+    expect(page).to have_content('Score: 0')
+    click_button("down")
+
+    expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
+    expect(page).to have_content('Score: -1')
+
+  end
 
   scenario 'un-logged in user clicks upvote'
   scenario 'un-logged in user clicks downvote'
