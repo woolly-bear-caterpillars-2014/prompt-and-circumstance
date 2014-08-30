@@ -3,6 +3,7 @@ body {
   font-size: $font-basesize;
   line-height: 1.67em;
   color: $base-text;
+  background-color: $background-color;
 }
 
 
@@ -143,7 +144,6 @@ a {
 input[type="submit"], input[type="button"], a.btn, button, .btn {
   @include transition(0.15s);
 
-  width: 100%;
   text-align: center;
   line-height: 1;
   display: inline-block;
@@ -194,7 +194,7 @@ textarea {
   font-weight: 300;
 }
 
-input[type=text], textarea {
+input[type=text], textarea, input[type=password] {
   -webkit-transition: all 0.15s ease-in-out;
   -moz-transition: all 0.15s ease-in-out;
   -ms-transition: all 0.15s ease-in-out;
@@ -208,7 +208,7 @@ input[type=text], textarea {
   font-weight: 300;
 }
 
-input[type=text]:focus, textarea:focus, input[type=submit]:focus, input[type=buton]:focus, a.btn:focus, button:focus {
+input[type=text]:focus, textarea:focus, input[type=submit]:focus, input[type=buton]:focus, a.btn:focus, button:focus, input[type=password]:focus  {
   box-shadow: 0 0 5px $success-color;
 }
 

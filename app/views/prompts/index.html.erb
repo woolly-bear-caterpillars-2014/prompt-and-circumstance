@@ -1,8 +1,12 @@
-
-<ul class="prompts">
+<div class="prompts grid grid-pad">
+  <ul class="content">
   <% @prompts.each do |prompt| %>
-    <li>
-      <%= link_to prompt.title, prompt  %>
-    </li>
+  <div class="col-1-3">
+	<li>
+	  <h3><%= link_to prompt.title, prompt  %></h3>
+	  <p><%= prompt.short_description %></p>
+	</li>
+  </div>
   <% end %>
-</ul>
+  </ul>
+</div>
