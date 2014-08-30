@@ -14,11 +14,11 @@ feature "User votes on prompt: " do
 
     test_signup
     user_clicks_through_to_show_prompt
-    expect(page).to have_content('Vote Count: 0')
+    expect(page).to have_content('Score: 0')
     click_button("up")
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Vote Count: 1')
+    expect(page).to have_content('Score: 1')
 
   end
 
