@@ -58,7 +58,7 @@ describe PromptsController do
             title: "",
             description: ""
           }
-          expect(response).to render_template(:new)
+          expect(response).to redirect_to(new_prompt_path)
         end
       end
     end
