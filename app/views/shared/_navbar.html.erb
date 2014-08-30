@@ -1,1 +1,10 @@
-<h1> Promptr</h1>
+
+<header>
+  <h1> <%= link_to "Promptr", root_path %></h1>
+</header>
+
+
+<nav>
+  <%= link_to "New Prompt", new_prompt_path, class: 'btn' %>
+  <%= display_session_links %>
+</nav>
