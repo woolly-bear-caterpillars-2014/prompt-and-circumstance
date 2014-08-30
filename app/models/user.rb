@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :prompts
   has_many :responses
+  has_many :votes
   has_secure_password
 
   before_save { self.email = email.downcase }
