@@ -212,3 +212,12 @@ input[type=text]:focus, textarea:focus, input[type=submit]:focus, input[type=but
   box-shadow: 0 0 5px $success-color;
 }
 
+// ICONS
+.fa {
+  color: $lighter-grey;
+  padding-right: 2px;
+}
+
+.fa-plus {
+  color: white;
+}
