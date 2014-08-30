@@ -8,10 +8,4 @@ FactoryGirl.define do
   end
 end
 
-FactoryGirl.define do
-  factory :teste_user do
-    name "Teste"
-    email "teste@teste.teste"
-    password "testeteste"
-  end
-end
+
