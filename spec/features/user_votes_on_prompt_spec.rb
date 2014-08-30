@@ -37,10 +37,51 @@ feature "User votes on prompt: " do
 
   end
 
-  scenario 'un-logged in user clicks upvote'
-  scenario 'un-logged in user clicks downvote'
+  scenario 'un-logged in user clicks upvote' do
+    prompt
 
-  scenario 'logged in user clicks upvote attempting mutiple votes, invalidates subsequent'
+    user_clicks_through_to_show_prompt
+    expect(page).to have_content('Score: 0')
+    click_button("up")
+
+    expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
+    expect(page).to have_content('Score: 0')
+    expect(page).to have_content('Must be logged in to vote! What are you trying to do you dirty vote scammer??')
+  end
+
+  scenario 'un-logged in user clicks downvote' do
+    prompt
+
+    user_clicks_through_to_show_prompt
+    expect(page).to have_content('Score: 0')
+    click_button("down")
+
+    expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
+    expect(page).to have_content('Score: 0')
+    expect(page).to have_content('Must be logged in to vote! What are you trying to do you dirty vote scammer??')
+  end
+
+
+  scenario 'logged in user clicks upvote attempting mutiple votes, invalidates subsequent' do
+
+    prompt
+    user
+
+    test_signup
+    user_clicks_through_to_show_prompt
+    expect(page).to have_content('Score: 0')
+    click_button("up")
+
+    expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
+    expect(page).to have_content('Score: 1')
+
+    click_button("up")
+    expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
+    expect(page).to have_content('Score: 1')
+    expect(page).to have_content('What are you trying to do you dirty vote scammer??')
+
+  end
+
   scenario 'logged in user clicks downvote attempting mutiple votes, invalidates subsequent'
 
 
