@@ -1,13 +1,29 @@
+<div class="prompt grid grid-pad">
+  <div class="col-8-12">
+    <div class="content prompt">
+      <h2><%= @prompt.title %></h2>
+      <h4><%= @prompt.user.name %> |  <%= time_ago_in_words(@prompt.created_at) %>  </h4>
+      <p><%= @prompt.description %></p>
+    </div>
+  </div>
 
-<h2><%= @prompt.title %></h2>
-  <p><%= @prompt.description %></p>
 
-<h2>Responses</h2>
+  <div class="col-4-12">
+    <div class="content form">
+      <%= render 'responses/form', :prompt => @prompt %>
+    </div>
+  </div>
+</div>
+
+<div class="responses grid grid-pad">
   <ul>
-    <% @prompt.responses.each do |response| %>
-      <li>
-        <%= response.body %>
-      </li>
-    <% end %>
+  <% @prompt.responses.each do |response| %>
+  <div class="col-1-3">
+	<li class="content">
+	  <h4><%= response.user.name %> - <%= time_ago_in_words(response.created_at) %> </h4>
+	  <p><%= response.body %></p>
+	</li>
+  </div>
+  <% end %>
   </ul>
-<%= render 'responses/form', :prompt => @prompt %>
+</div>

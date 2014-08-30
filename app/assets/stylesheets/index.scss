@@ -8,7 +8,10 @@ div.prompts {
       background-color: white;
       box-shadow:0 1px 2px #aaa;
       border-radius:3px;
-
+      h4 {
+	font-family: $font-family;
+	font-weight: 300;
+      }
     }
   }
 }
