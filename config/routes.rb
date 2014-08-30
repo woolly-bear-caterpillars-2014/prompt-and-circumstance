@@ -17,9 +17,12 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', :as => :logout
 
   resources :prompts do
+
     resources :responses
   end
 
+  post 'votes' => 'votes#create'
+  # "/prompts/:prompt_id/votes"
   resources :users, only: [:new, :create]
 
   # Example resource route with options:
