@@ -5,21 +5,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_url
     else
       render 'new'
-    end
-  end
-
-  def login
-    @user = User.find_by_email(user_params[:email])
-    if @user.authenticate
-      session[:user_id] = @user.id
-      redirect_to root_url
-    else
-      render #'login'
     end
   end
 

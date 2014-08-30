@@ -29,7 +29,10 @@ describe PromptsController do
   end
 
   context "POST create" do
+
     context "when logged in" do
+
+     context "with valid params" do
       it "creates a new prompt for currrent_user" do
         expect{
           post :create,
@@ -46,6 +49,17 @@ describe PromptsController do
           description: prompt.description
         }
         expect(response).to redirect_to(assigns(:prompt))
+        end
+      end
+
+      context "with invalid params" do
+        it "re-renders the new prompt page" do
+          post :create, prompt: {
+            title: "",
+            description: ""
+          }
+          expect(response).to render_template(:new)
+        end
       end
     end
   end

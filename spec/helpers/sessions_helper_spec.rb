@@ -1,14 +1,25 @@
 require 'rails_helper'
 describe SessionsHelper do
-# Specs in this file have access to a helper object that includes
-# the SessionsHelper. For example:
-#
-# describe SessionsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
+  describe "display_session_links" do
+    let(:user) { FactoryGirl.create(:user) }
 
+    it "should render logout partial if user is logged in" do
+      session[:user_id] = user.id
+      expect(helper.display_session_links).to render_template('partials/_logout')
+    end
+
+    it "should render login if no current session" do
+      session[:user_id] = nil
+      expect(helper.display_session_links).to render_template('partials/_login_links')
+    end
+  end
+
+  describe "current_user" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "returns the currently logged in user" do
+      session[:user_id] = user.id
+      expect(helper.current_user).to eq(user)
+    end
+  end
 end
