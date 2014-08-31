@@ -1,5 +1,5 @@
 <% if @vote.valid? %>
-  $('#vote_<%= @response.id %> h4.score').html("<%= @response.score %>");
+  $('#vote_<%= response.id %> h4.score').html("<%= response.score %>");
 <% else %>
   var error = $('<div/>', {class: 'alert', text: "<%= @vote.errors.full_messages.join('. ') %>"})
   $('.flash').append(error.hide())

@@ -21,6 +21,8 @@ feature 'User votes on a response:' do
 	 	test_signup
 	 	user_clicks_through_to_show_prompt
 
+	 	expect(page).to have_content(response.body)
+
 	  expect(page.first('h4.score')).to have_content('0')
 	 	first('button.up').click
 
