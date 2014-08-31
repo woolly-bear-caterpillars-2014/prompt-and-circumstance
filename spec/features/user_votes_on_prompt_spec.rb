@@ -3,10 +3,10 @@ require 'rails_helper.rb'
 feature "User votes on prompt: " do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:prompt) { FactoryGirl.create(:prompt) }
-
-
-
+  let(:prompt) { user.prompts.create(
+    title: "What's your name?",
+    description: "Is it yeff?"
+  ) }
   scenario 'logged in user clicks upvote' do
 
     prompt
@@ -14,11 +14,11 @@ feature "User votes on prompt: " do
 
     test_signup
     user_clicks_through_to_show_prompt
-    expect(page).to have_content('Score: 0')
-    click_button("up")
+    expect(page.first('h4.score')).to have_content('0')
+    first('button.up').click
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Score: 1')
+    expect(page.first('h4.score')).to have_content('1')
 
   end
 
@@ -29,11 +29,11 @@ feature "User votes on prompt: " do
 
     test_signup
     user_clicks_through_to_show_prompt
-    expect(page).to have_content('Score: 0')
-    click_button("down")
+    expect(page.first('h4.score')).to have_content('0')
+    first('button.down').click
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Score: -1')
+    expect(page.first('h4.score')).to have_content('-1')
 
   end
 
@@ -41,11 +41,11 @@ feature "User votes on prompt: " do
     prompt
 
     user_clicks_through_to_show_prompt
-    expect(page).to have_content('Score: 0')
-    click_button("up")
+    expect(page.first('h4.score')).to have_content('0')
+    first('button.up').click
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Score: 0')
+    expect(page.first('h4.score')).to have_content('0')
     expect(page).to have_content('Must be logged in to vote! What are you trying to do you dirty vote scammer??')
   end
 
@@ -53,11 +53,11 @@ feature "User votes on prompt: " do
     prompt
 
     user_clicks_through_to_show_prompt
-    expect(page).to have_content('Score: 0')
-    click_button("down")
+    expect(page.first('h4.score')).to have_content('0')
+    first('button.down').click
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Score: 0')
+    expect(page.first('h4.score')).to have_content('0')
     expect(page).to have_content('Must be logged in to vote! What are you trying to do you dirty vote scammer??')
   end
 
@@ -69,15 +69,15 @@ feature "User votes on prompt: " do
 
     test_signup
     user_clicks_through_to_show_prompt
-    expect(page).to have_content('Score: 0')
-    click_button("up")
+    expect(page.first('h4.score')).to have_content('0')
+    first('button.up').click
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Score: 1')
+    expect(page.first('h4.score')).to have_content('1')
 
-    click_button("up")
+    first('button.up').click
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
-    expect(page).to have_content('Score: 1')
+    expect(page.first('h4.score')).to have_content('1')
     expect(page).to have_content('What are you trying to do you dirty vote scammer??')
 
   end
@@ -117,9 +117,11 @@ end
 
 def user_clicks_through_to_show_prompt
   visit "/prompts"
-  click_link "#{prompt.title}"
 
   expect(page).to have_content("#{prompt.title}")
+
+  click_link "#{prompt.title}"
+
   expect(current_url).to eq("http://www.example.com/prompts/#{prompt.id}")
 
 end

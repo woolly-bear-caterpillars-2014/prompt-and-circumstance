@@ -10,7 +10,7 @@ class VotesController < ApplicationController
     @prompt = Prompt.find(params[:vote][:votable_id])
 
     if !session[:user_id]
-      flash[:notice] = 'Must be logged in to vote! What are you trying to do you dirty vote scammer??'
+      flash[:alert] = 'Must be logged in to vote! What are you trying to do you dirty vote scammer??'
     else
       @user = User.find(session[:user_id])
       @vote = @prompt.votes.new(vote_params)
@@ -19,7 +19,7 @@ class VotesController < ApplicationController
         @user.votes << @vote
         @prompt.update_score(@vote)
       else
-        flash[:notice] = 'What are you trying to do you dirty vote scammer??'
+        flash[:alert] = 'What are you trying to do you dirty vote scammer??'
       end
     end
     redirect_to prompt_path(@prompt)

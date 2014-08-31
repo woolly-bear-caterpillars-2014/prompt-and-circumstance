@@ -4,6 +4,9 @@ class Response < ActiveRecord::Base
   has_many :votes, :as => :votable
 
   validates :body, presence: true
+  validates :user_id, presence: true
+  validates :prompt_id, presence: true
+
 
   before_create :set_score
 
@@ -17,4 +20,4 @@ class Response < ActiveRecord::Base
   	self.score ||= 0
   end
 
-end
+
