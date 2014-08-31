@@ -2,7 +2,6 @@ require 'rails_helper.rb'
 
 feature "user creates prompt" do
 
-  let(:teste_user) { FactoryGirl.create(:teste_user) }
 
   scenario 'with valid inputs' do
 
