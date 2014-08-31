@@ -5,12 +5,14 @@ class PromptsController < ApplicationController
   end
 
   def new
-    redirect_to '/' unless session[:user_id]
-    @prompt = Prompt.new
+    return redirect_to '/', alert: "Login or Signup first" unless current_user
+    @prompt = current_user.prompts.build
   end
 
   def create
-    @prompt = Prompt.new(prompt_params)
+    return redirect_to '/', alert: "Login or Signup first" unless current_user
+
+    @prompt = current_user.prompts.build(prompt_params)
     if @prompt.save
       redirect_to prompt_path(@prompt)
     else
@@ -28,4 +30,5 @@ class PromptsController < ApplicationController
   def prompt_params
     params.require(:prompt).permit(:title, :description)
   end
+
 end

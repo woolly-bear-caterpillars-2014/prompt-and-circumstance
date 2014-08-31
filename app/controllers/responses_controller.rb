@@ -1,7 +1,10 @@
 class ResponsesController < ApplicationController
   def create
+    return redirect_to '/', alert: "Login or Signup first" unless current_user
     @prompt = Prompt.find(params[:prompt_id])
-    @response = @prompt.responses.new(response_params)
+    @response = Response.new(response_params)
+    @response.user_id = current_user.id
+    @response.prompt_id = @prompt.id
 
     if @response.save
       redirect_to @prompt
@@ -14,4 +17,5 @@ class ResponsesController < ApplicationController
   def response_params
     params.require(:response).permit(:body)
   end
+
 end

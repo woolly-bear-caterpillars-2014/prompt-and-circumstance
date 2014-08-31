@@ -31,6 +31,9 @@ describe PromptsController do
   context "POST create" do
 
     context "when logged in" do
+      before do
+        session[:user_id] = user.id
+      end
 
      context "with valid params" do
       it "creates a new prompt for currrent_user" do
@@ -54,12 +57,25 @@ describe PromptsController do
 
       context "with invalid params" do
         it "re-renders the new prompt page" do
+
           post :create, prompt: {
             title: "",
             description: ""
           }
           expect(response).to redirect_to(new_prompt_path)
         end
+      end
+    end
+
+    context "when not logged in" do
+      it "redirects to index page" do
+        session.clear
+        post :create,
+        prompt: {
+          title: prompt.title,
+          description: prompt.description
+        }
+        expect(response).to redirect_to(root_path)
       end
     end
   end
