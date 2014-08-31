@@ -14,6 +14,9 @@ class Prompt < ActiveRecord::Base
     save
   end
 
+  def short_description
+    description.length < 100 ? description : description[0..100] + "..."
+  end
 
   private
 

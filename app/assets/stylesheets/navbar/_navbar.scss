@@ -1,24 +1,48 @@
 header {
   // color:  $background-color;
-  // background-color: $dark-grey;
+  background-color: white;;
+  height: 100px;
+  margin: 0;
+  position: relative;
+  text-align: center;
 
-  h1 a {
-    color: $primary-color;
+  h1 {
+    margin: 0;
+    display: inline-block;
+    a {
+      color: $primary-color;
+      line-height: 100px;
 
-    &:hover {
-      color: $secondary-color;
-      @include transition(0.15s);
-      border-bottom: none;
+      &:hover {
+	color: $secondary-color;
+	@include transition(0.15s);
+	border-bottom: none;
 
+      }
     }
+  }
+  .new-prompt {
+    position: absolute;
+    top: 20px;
+    left: 10px;
   }
 
   nav{
+    position: absolute;
+    width: auto;
+    top: 20px;
+    right: 10px;
     color: $primary-color;
 
-    ul{
+    a {
+      // float: left;
+    }
 
+    ul{
+      list-style: none;
+      margin: 0;
       li{
+	display: inline;
         color: $raspberry;
       }
     }
