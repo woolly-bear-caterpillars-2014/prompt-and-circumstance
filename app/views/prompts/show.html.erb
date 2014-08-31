@@ -25,6 +25,10 @@
 	<li class="content">
 	  <h4><i class="fa fa-user"></i> <%= response.user.name %> - <%= time_ago_in_words(response.created_at) %> ago </h4>
 	  <p><%= response.body %></p>
+
+    <div class"vote-wrapper">
+      <%= render 'shared/response_vote', :response => response %>
+    </div>
 	</li>
   </div>
   <% end %>
