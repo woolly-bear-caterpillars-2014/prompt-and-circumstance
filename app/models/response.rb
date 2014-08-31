@@ -5,13 +5,16 @@ class Response < ActiveRecord::Base
 
   validates :body, presence: true
 
+  before_create :set_score
+
+
   def upvote(vote)
   	increment(:score, vote.polarity)
- 	save
+ 		save
   end
 
   def set_score
   	self.score ||= 0
   end
-  
+
 end
