@@ -53,6 +53,9 @@ class VotesController < ApplicationController
         return format.js
       end
 
+      @user = User.find(session[:user_id])
+      @vote.user_id = @user.id
+
       if @vote.save
         @response.upvote(@vote)
         format.html { redirect_to prompt_path(@prompt) }
