@@ -4,6 +4,7 @@ class VotesController < ApplicationController
   #we should use separate routes + controller actions for votes on Prompts and Responses - we'll handle prompts- take the responses
 
   ### Prompt Vote Create
+  # TODO: Fat, not DRY controllers here. Refactor both these into a single method, and move logic into helper methods
 
   def createPromptVote
     @prompt = Prompt.find(params[:vote][:votable_id])

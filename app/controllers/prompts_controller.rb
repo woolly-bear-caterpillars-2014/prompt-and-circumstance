@@ -16,8 +16,7 @@ class PromptsController < ApplicationController
     if @prompt.save
       redirect_to prompt_path(@prompt)
     else
-      flash[:notice] = 'Prompt Creation Failed, Please Try Again! '
-      redirect_to new_prompt_path
+      redirect_to new_prompt_path, :alert => @prompt.errors.full_messages.join(". ")
     end
   end
 

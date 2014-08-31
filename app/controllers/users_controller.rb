@@ -10,7 +10,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      render 'new'
+      p @user.errors
+      redirect_to new_user_path, :alert => @user.errors.full_messages.join(". ")
     end
   end
 
