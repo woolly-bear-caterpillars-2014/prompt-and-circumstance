@@ -13,11 +13,11 @@
     <body class="prompts">
 
       <%= render 'shared/navbar' %>
-
+      <div class="flash">
       <% flash.each do |name, msg| -%>
           <%= content_tag :div, msg, class: name %>
       <% end -%>
-
+      </div>
       <%= yield %>
 
     </body>

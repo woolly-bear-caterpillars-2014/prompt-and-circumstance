@@ -5,10 +5,9 @@
       <h4><i class="fa fa-user"></i> <%= @prompt.user.name %> |  <%= time_ago_in_words(@prompt.created_at) %> ago</h4>
       <p><%= @prompt.description %></p>
 
-      <h4>Score: <%= @prompt.score %></h4>
-      <%= button_to 'up', {:controller => "votes", :action => "createPromptVote", vote: { votable_id: @prompt.id, polarity: 1, votable_type: @prompt.class}} %>
-      <%= button_to 'down', {:controller => "votes", :action => "createPromptVote", vote: { votable_id: @prompt.id, polarity: -1, votable_type: @prompt.class}} %>
-
+      <div class="vote-wrapper">
+        <%= render 'shared/voting', :prompt => @prompt %>
+      </div>
     </div>
   </div>
 
