@@ -1,10 +1,16 @@
 require 'rails_helper.rb'
 
+
 feature 'User votes on a response:' do 
 
 	let(:user) { FactoryGirl.create(:user) }
-	let(:prompt) { FactoryGirl.create(:prompt) }
-	let(:response) { FactoryGirl.create (:response) }
+	let(:prompt) { user.prompts.create(
+    title: "What's your name?",
+    description: "Is it yeff?"
+  ) }
+	let(:response) { prompt.responses.create(
+		body: "Sleepy? He's like the mexican wolverine"
+		)}
 
 	 scenario 'logged in user clicks upvote' do
 	 	
@@ -15,11 +21,11 @@ feature 'User votes on a response:' do
 	 	test_signup
 	 	user_clicks_through_to_show_prompt
 
-	 	expect(page).to have_content('Score: 0')
-	 	click_button("upvote")
+    expect(page.first('h4.score')).to have_content('0')
+	 	first('button.up').click
 
 	 	expect(current_url).to eq("http://www.example.com/prompts/#{prompt.id}")
-	 	expect(page).to have_content('Score: 1')
+		expect(page.first('h4.score')).to have_content('1')
 	 end
 
 
