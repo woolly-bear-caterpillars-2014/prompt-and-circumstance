@@ -1,0 +1,11 @@
+<% if @vote.valid? %>
+  $('#vote_<%= @prompt.id %> h4.score').html("<%= @prompt.score %>");
+<% else %>
+  var error = $('<div/>', {class: 'alert', text: "<%= @vote.errors.full_messages.join('. ') %>"})
+  $('.flash').append(error.hide())
+  error.fadeIn(300).delay(2500).fadeOut(500);
+  setTimeout(function() {
+    error.remove();
+  }, 3300);
+<% end %>
+

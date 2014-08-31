@@ -5,16 +5,19 @@ class Vote < ActiveRecord::Base
   validates :polarity, :presence => true, :inclusion => { :in => -1..1}
   validates :votable_type, :presence => true
   validates :votable_id, :presence => true
+  validates :user_id, :presence => { message: "must be logged in to vote" }
 
+  validate :check_against_duplicates
 
-  def self.check_against_duplicates(user, vote)
-    counterfeit = Vote.where(user: user.id, votable_id: vote.votable_id, votable_type: vote.votable_type)
-    if counterfeit.empty?
-      vote.save
-    else
-      false
+  def check_against_duplicates
+    duplicates = Vote.where(
+      user: user_id,
+      votable_id: votable_id,
+      votable_type: votable_type
+    ).reject { |vote| vote == self }
+
+    if duplicates.present?
+      errors.add(:error!, "What are you trying to do you dirty vote scammer??")
     end
   end
-
-
 end

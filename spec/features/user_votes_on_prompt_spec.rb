@@ -1,12 +1,14 @@
 require 'rails_helper.rb'
 
-feature "User votes on prompt: " do
+feature "User votes on prompt: ", :js => true do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:prompt) { user.prompts.create(
     title: "What's your name?",
-    description: "Is it yeff?"
+    description: "Is it yeff?",
+    user_id: user.id
   ) }
+
   scenario 'logged in user clicks upvote' do
 
     prompt
@@ -46,7 +48,7 @@ feature "User votes on prompt: " do
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
     expect(page.first('h4.score')).to have_content('0')
-    expect(page).to have_content('Must be logged in to vote! What are you trying to do you dirty vote scammer??')
+    expect(page).to have_content('must be logged in to vote')
   end
 
   scenario 'un-logged in user clicks downvote' do
@@ -58,7 +60,7 @@ feature "User votes on prompt: " do
 
     expect(current_url).to eq("http://www.example.com/prompts/#{Prompt.last.id}")
     expect(page.first('h4.score')).to have_content('0')
-    expect(page).to have_content('Must be logged in to vote! What are you trying to do you dirty vote scammer??')
+    expect(page).to have_content('must be logged in to vote')
   end
 
 
