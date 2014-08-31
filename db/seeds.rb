@@ -1,7 +1,11 @@
 require 'faker'
 
 10.times do
-  FactoryGirl.create(:user)
+  User.create(
+    name: Faker::Internet.user_name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password(8)
+  )
 end
 
 20.times do
