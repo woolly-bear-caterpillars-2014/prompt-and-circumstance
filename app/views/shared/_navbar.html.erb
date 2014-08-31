@@ -1,10 +1,12 @@
 
 <header>
-  <h1> <%= link_to "Promptr", root_path %></h1>
+  <%= link_to (raw('<i class="fa fa-plus"></i> New Prompt')), new_prompt_path, class: 'btn new-prompt' %>
+  <h1> <%= link_to "Prompt and Circumstance", root_path  %></h1>
+  <nav>
+    <ul>
+      <%= display_session_links %>
+    </ul>
+  </nav>
 </header>
 
 
-<nav>
-  <%= link_to "New Prompt", new_prompt_path, class: 'btn' %>
-  <%= display_session_links %>
-</nav>
