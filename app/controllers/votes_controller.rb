@@ -40,6 +40,31 @@ class VotesController < ApplicationController
 
   ### and for Responses
   def createResponseVote
+    @response = Response.find([params[:vote][:votable_id]]).first
+    @vote = @response.votes.new(vote_params)
+
+    respond_to do |format|
+      if !session[:user_id]
+        format.html{
+          flash[:alert] = 'Must be logged in to vote! What are you trying to do you dirty vote scammer??'
+          return redirect_to root_path
+        }
+
+        return format.js
+      end
+
+      if @vote.save
+        @response.upvote(@vote)
+        format.html { redirect_to prompt_path(@prompt) }
+        format.js
+      else
+        format.html {
+        flash[:alert] = 'What are you trying to do you dirty vote scammer??'
+        redirect_to prompt_path(@prompt)
+        }
+      format.js
+      end
+    end
   end
 
   private
