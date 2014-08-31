@@ -1,6 +1,5 @@
 class VotesController < ApplicationController
 
-
   # EDDIE:
   #we should use separate routes + controller actions for votes on Prompts and Responses - we'll handle prompts- take the responses
 
@@ -8,22 +7,33 @@ class VotesController < ApplicationController
 
   def createPromptVote
     @prompt = Prompt.find(params[:vote][:votable_id])
+    @vote = @prompt.votes.new(vote_params)
 
-    if !session[:user_id]
-      flash[:alert] = 'Must be logged in to vote! What are you trying to do you dirty vote scammer??'
-    else
-      @user = User.find(session[:user_id])
-      @vote = @prompt.votes.new(vote_params)
-
-      if Vote.check_against_duplicates(@user, @vote)
-        @user.votes << @vote
-        @prompt.update_score(@vote)
-      else
-        flash[:alert] = 'What are you trying to do you dirty vote scammer??'
+    respond_to do |format|
+      if !session[:user_id]
+        format.html {
+          flash[:alert] = 'Must be logged in to vote! What are you trying to do you dirty vote scammer??'
+          return redirect_to root_path
+        }
+        return format.js
       end
-    end
-    redirect_to prompt_path(@prompt)
 
+      @user = User.find(session[:user_id])
+      @vote.user_id = @user.id
+
+      if @vote.save
+        @prompt.update_score(@vote)
+        format.html { redirect_to prompt_path(@prompt) }
+        format.js
+      else
+        format.html {
+          flash[:alert] = 'What are you trying to do you dirty vote scammer??'
+          redirect_to prompt_path(@prompt)
+        }
+        format.js
+      end
+
+    end
   end
 
 # You can only vote once or something.
@@ -36,7 +46,4 @@ class VotesController < ApplicationController
   def vote_params
       params.require(:vote).permit(:polarity, :votable_id, :votable_type)
   end
-
-
-
 end

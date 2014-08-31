@@ -32,6 +32,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
+  gem "selenium-webdriver", "~> 2.42.0"
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker', :require => false

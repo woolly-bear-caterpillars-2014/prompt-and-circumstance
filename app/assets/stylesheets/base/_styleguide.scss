@@ -218,13 +218,19 @@ input[type=text]:focus, textarea:focus, input[type=submit]:focus, input[type=but
   margin: 0 auto;
   font-weight: 300;
   color: white;
-  background-color: $primary-color;
+  position: relative;
+  height: 30px;
+  background-color: transparent;
   text-align: center;
   width: 1100px;
   border-radius: 0 0 5px 5px;
 
   .alert {
     background-color: $warning-color;
+    position: absolute;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+
   }
 
 }
