@@ -4,4 +4,14 @@ class Response < ActiveRecord::Base
   has_many :votes, :as => :votable
 
   validates :body, presence: true
+
+  def upvote(vote)
+  	increment(:score, vote.polarity)
+ 	save
+  end
+
+  def set_score
+  	self.score ||= 0
+  end
+  
 end
