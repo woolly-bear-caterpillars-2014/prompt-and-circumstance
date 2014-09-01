@@ -15,10 +15,10 @@ describe UsersController do
   end
 
   context "create with valid params" do
-    params = {:user => {
-      :name => "Bob",
-      :email => "bob@bob.com",
-      :password => "1234567"
+    params = { :user => {
+                 :name => "Bob",
+                 :email => "bob@bob.com",
+                 :password => "1234567"
     }}
 
     before do
@@ -45,11 +45,11 @@ describe UsersController do
   end
 
   context "create with invalid params" do
-    params = {:user => {
-	:name => "",
-	:email => "bob@bob.com",
-	:password => "1234567"
-      }}
+    params = { :user => {
+              	 :name => "",
+              	 :email => "bob@bob.com",
+              	 :password => "1234567"
+              }}
 
     before do
       session.clear

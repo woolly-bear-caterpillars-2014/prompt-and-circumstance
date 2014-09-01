@@ -12,6 +12,7 @@ describe VotesController do
                 ) }
 
   context 'votes on prompt' do
+    
     context 'when logged in' do
       context 'with valid params' do
         it 'creates new vote on specified prompt with supplied session id' do
