@@ -4,6 +4,11 @@ class PromptsController < ApplicationController
     @prompts = Prompt.order("created_at DESC")
   end
 
+  def index_hotness
+    @prompts = Prompt.order('hotness DESC')
+    render :index
+  end
+
   def new
     return redirect_to '/', alert: "Login or Signup first" unless current_user
     @prompt = current_user.prompts.build

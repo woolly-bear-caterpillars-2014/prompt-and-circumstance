@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20140901013647) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "score"
-    t.integer  "hotness"
+    t.integer  "score",       default: 0
+    t.float    "hotness",     default: 0.0
   end
 
   create_table "responses", force: true do |t|

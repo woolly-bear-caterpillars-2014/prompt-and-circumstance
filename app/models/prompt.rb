@@ -20,16 +20,14 @@ class Prompt < ActiveRecord::Base
   end
 
   def calculate_hotness
+    set_score
     # Get order (logarithmic - first 10 votes are as important as next 100)
-    p score.abs
     order = Math.log(score.abs < 1 ? 1 : score.abs)
-    p order
     sign = case
            when score < 0 then -1
            when score > 0 then 1
            else 0
            end
-    p sign
     seconds = created_at.to_i
     self.hotness = (sign * order + seconds / 45000).round(7)
   end
