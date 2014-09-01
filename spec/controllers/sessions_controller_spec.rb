@@ -25,9 +25,9 @@ describe SessionsController do
       end
     end
 
-    it "re-renders login page if invalid input" do
+    it "redirects to login page if invalid input" do
       post :create, :action => :login, email: "", password: ""
-      expect(response).to render_template(:new)
+      expect(response).to redirect_to(login_path)
     end
   end
 

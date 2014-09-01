@@ -41,6 +41,7 @@ class VotesController < ApplicationController
 
   ### and for Responses
   def createResponseVote
+    @prompt = Prompt.find(params[:id])
     @response = Response.find([params[:vote][:votable_id]]).first
     @vote = @response.votes.new(vote_params)
 
@@ -66,7 +67,7 @@ class VotesController < ApplicationController
         flash[:alert] = 'What are you trying to do you dirty vote scammer??'
         redirect_to prompt_path(@prompt)
         }
-      format.js
+        format.js
       end
     end
   end
