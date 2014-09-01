@@ -1,15 +1,15 @@
 <div class="voting" id="<%= "vote_#{response.id}" %>">
-	<%= form_tag({:action => "createResponseVote", :controller => "votes", vote: { votable_id: response.id, polarity: 1, votable_type: response.class }}, remote:true, class: 'vote') do %>
+	<%= form_tag({:action => "createResponseVote", :controller => "votes", id: @prompt.id, vote: { votable_id: response.id, polarity: 1, votable_type: response.class }}, remote:true, class: 'vote') do %>
 	<button type="submit" class="vote up">
 		<i class="fa fa-arrow-up up"></i>
 	</button>
 	<% end %>
 
-	<h4 class="score"><%= response.score || 0 %></h4>	
+	<h4 class="score"><%= response.score || 0 %></h4>
 
-	<%= form_tag({:action => "createResponseVote", :controller => "votes", vote: { votable_id: response.id, polarity: -1, votable_type: response.class }}, remote:true, class: 'vote') do %>
+	<%= form_tag({:action => "createResponseVote", :controller => "votes", id: @prompt.id, vote: { votable_id: response.id, polarity: -1, votable_type: response.class }}, remote:true, class: 'vote') do %>
 	<button type="submit" class="vote down">
-		<i class="fa fa-arrow-down down"></i>	
+		<i class="fa fa-arrow-down down"></i>
 	</button>
 	<% end %>
 </div>
