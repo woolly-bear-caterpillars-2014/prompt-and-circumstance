@@ -16,6 +16,7 @@ body {
 
 .light-txt {
   color: $light-grey;
+  font-weight: 300;
 }
 
 .light-bg {
@@ -349,4 +350,8 @@ div.sort-nav {
       padding: 0 0 5px 0;
     }
   }
+}
+
+p.narrow {
+  margin: 0;
 }

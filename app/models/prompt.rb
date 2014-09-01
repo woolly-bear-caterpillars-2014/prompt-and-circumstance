@@ -7,7 +7,7 @@ class Prompt < ActiveRecord::Base
   validates :description, presence: true
   validates :user_id, presence: true
 
-  before_create :set_score
+  before_create :set_score, :calculate_hotness
   before_save :calculate_hotness
 
   def update_score(vote)
@@ -29,7 +29,7 @@ class Prompt < ActiveRecord::Base
            else 0
            end
     seconds = created_at.to_i
-    self.hotness = (sign * order + seconds / 45000).round(7)
+    self.hotness = (sign * order + (seconds / 45000)).round(7)
   end
 
   private
