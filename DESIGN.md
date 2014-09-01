@@ -1,13 +1,13 @@
 Prompt and Circumstance Design
 ==============================
 
-## (Styleguide)[../public/styleguide.html]
+## [Styleguide](../../tree/master/public/styleguide.html)
 
 ## Schema design:
-![Schema](../public/p-and-c-schema.png)
+![Schema](https://raw.githubusercontent.com/apesic/prompt-and-circumstance/master/public/p-and-c-schema.png)
 
 ## Index wireframe:
-![Index](../public/p-and-c-index.png)
+![Index](https://raw.githubusercontent.com/apesic/prompt-and-circumstance/master/public/p-and-c-index.png)
 
 ## Prompt#show wireframe:
-![Show](../public/p-and-c-prompt-show.png)
+![Show](https://raw.githubusercontent.com/apesic/prompt-and-circumstance/master/public/p-and-c-prompt-show.png)
