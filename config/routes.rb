@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy', :as => :logout
 
-  get 'prompts/hot' => 'prompts#index_hotness'
+  get 'prompts/hot' => 'prompts#index_hotness', :as => :hot_prompts
 
   resources :prompts do
 
