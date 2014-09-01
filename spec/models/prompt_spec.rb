@@ -14,5 +14,4 @@ describe Prompt do
 	# it "should have an initial score of 0" do
 	# 	prompt.score ||= 0
 	# end
-	
 end
