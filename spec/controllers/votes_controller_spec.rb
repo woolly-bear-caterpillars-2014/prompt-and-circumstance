@@ -3,32 +3,26 @@ require 'rails_helper'
 describe VotesController do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:prompt) { user.prompts.create(title: "What's your name?",
-    description: "Is it yeff?"
-  ) }
+  let(:prompt) { user.prompts.create(
+                  title: "What's your name?",
+                  description: "Is it yeff?"
+                ) }
   let(:response) { prompt.responses.create(
-  body: "Sleepy? He's like the mexican wolverine"
-  )}
+                  body: "Sleepy? He's like the mexican wolverine"
+                ) }
 
   context 'votes on prompt' do
-    context "when logged in" do
+    context 'when logged in' do
       context 'with valid params' do
         it 'creates new vote on specified prompt with supplied session id' do
-
-          session[:user_id] = user.id
-          expect{
-            post :createPromptVote,
-              :vote => {
-              :polarity => 1,
-              :votable_id => prompt.id
-            }
-          }.to change{ prompt.votes.count }.by(1)
+          current_session
+          expect{ create_prompt_vote }.to change{ prompt.votes.count }.by(1)
         end
       end
 
       context 'with invalid params' do
         it 'does not create a new vote' do
-          session[:user_id] = user.id
+          current_session
           expect{
             post :createPromptVote,
               :vote => {
@@ -41,22 +35,11 @@ describe VotesController do
 
       context "with a duplicate vote" do
         it "does not create a new vote" do
-          session[:user_id] = user.id
-
+          current_session
           # Vote once
-          post :createPromptVote,
-            :vote => {
-            :polarity => 1,
-            :votable_id => prompt.id
-          }
+          create_prompt_vote
           # Vote again
-          expect{
-            post :createPromptVote,
-              :vote => {
-              :polarity => 1,
-              :votable_id => prompt.id
-            }
-          }.not_to change{ prompt.votes.count }
+          expect{ create_prompt_vote }.not_to change{ prompt.votes.count }
         end
       end
     end
@@ -65,13 +48,7 @@ describe VotesController do
       it 'does not change vote count' do
 
         session[:user_id] = nil
-        expect{
-          post :createPromptVote,
-            :vote => {
-            :polarity => 1,
-            :votable_id => prompt.id
-          }
-        }.not_to change{ prompt.votes.count }
+        expect{ create_prompt_vote }.not_to change{ prompt.votes.count }
       end
     end
   end
@@ -86,7 +63,7 @@ describe VotesController do
       context 'with valid params' do
         it 'creates new vote on specified response with supplied session id' do
 
-          session[:user_id] = user.id
+          current_session
           expect{
             post :createResponseVote,
               :id => prompt.id,
@@ -100,7 +77,7 @@ describe VotesController do
 
       context 'with invalid params' do
         it 'does not create a new vote' do
-          session[:user_id] = user.id
+          current_session
           expect{
             post :createResponseVote,
               :id => prompt.id,
@@ -114,7 +91,7 @@ describe VotesController do
 
       context "with a duplicate vote" do
         it "does not create a new vote" do
-          session[:user_id] = user.id
+          current_session
 
           # Vote once
           post :createResponseVote,
@@ -157,7 +134,7 @@ describe VotesController do
       user 
       prompt
       response
-      session[:user_id] = user.id
+      current_session
       expect{
         post :createResponseVote, 
           :vote => { 
@@ -170,4 +147,15 @@ describe VotesController do
   end
 end
 
+def current_session
+  session[:user_id] = user.id
+end
+
+def create_prompt_vote
+  post :createPromptVote,
+              :vote => {
+              :polarity => 1,
+              :votable_id => prompt.id
+            }
+end
 
