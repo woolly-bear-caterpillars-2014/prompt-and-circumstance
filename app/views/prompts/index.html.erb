@@ -7,7 +7,13 @@
 	<li>
 	  <h3><%= link_to prompt.title, prompt  %></h3>
 	  <h4><i class="fa fa-user"></i> <%= prompt.user.name %> - <%= time_ago_in_words(prompt.created_at) %> ago</h4>
-	  <p><%= prompt.short_description %></p>
+
+    <p class="light-txt narrow">
+      <%= pluralize(prompt.responses.count, "responses") %>
+    </p>
+
+    <p><%= prompt.short_description %></p>
+
     <div class="vote-wrapper">
       <%= render partial: 'shared/voting', locals: {prompt: prompt} %>
     </div>
