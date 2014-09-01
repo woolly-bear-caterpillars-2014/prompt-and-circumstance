@@ -35,7 +35,6 @@ group :development, :test do
   gem "selenium-webdriver", "~> 2.42.0"
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-
 end
 
 gem 'faker'
