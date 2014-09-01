@@ -1,6 +1,6 @@
 require 'faker'
 
-10.times do
+20.times do
   User.create(
     name: Faker::Internet.user_name,
     email: Faker::Internet.email,
@@ -12,10 +12,18 @@ end
   prompt = Prompt.create(
     :title => Faker::Company.catch_phrase,
     :description => Faker::Lorem.paragraph,
-    :user_id => rand(1..10)
+    :user_id => rand(1..10),
+    :created_at => rand(1..10).days.ago
   )
   rand(4..10).times do
-    prompt.responses.create(body: Faker::Hacker.say_something_smart, user_id: rand(1..10))
+    prompt.responses.create(body: Faker::Hacker.say_something_smart, user_id: rand(1..20))
+  end
+
+  # Have each user vote on each prompt
+  User.all.each do |user|
+      polarity = rand(2) == 0 ? -1 : 1
+      vote = prompt.votes.create(polarity: polarity, user_id: user.id)
+      prompt.update_score(vote)
   end
 end
 

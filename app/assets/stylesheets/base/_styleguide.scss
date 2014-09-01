@@ -327,3 +327,26 @@ button.vote {
 .login, .signup {
   padding: 40px;
 }
+
+div.prompts {
+  ul.content {
+    margin: 0;
+  }
+}
+
+div.sort-nav {
+  width: 1100px;
+  margin: 0 auto 10px auto;
+  text-align: left;
+  ul {
+    margin: 0 20px;
+    width: auto;
+    padding: 0;
+    display: inline;
+    // position: relative
+    li {
+      display: inline;
+      padding: 0 0 5px 0;
+    }
+  }
+}
