@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe PromptsController do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:prompt) { FactoryGirl.build(:prompt) }
+
+
   context "#index" do
     it "assigns all prompts to a variable" do
       get :index
@@ -8,8 +12,19 @@ describe PromptsController do
     end
   end
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:prompt) { FactoryGirl.build(:prompt) }
+  context "#index_hotness" do
+    before do
+      get :index_hotness
+    end
+
+    it "assigns all prompts to a variable" do
+      expect(assigns(:prompts)).not_to be_nil
+    end
+
+    it "renders the index template" do
+      expect(response).to render_template(:index)
+    end
+  end
 
   context "GET new" do
     context "when logged in" do
