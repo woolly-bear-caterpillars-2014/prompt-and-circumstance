@@ -1,10 +1,10 @@
 class ResponsesController < ApplicationController
+  before_action :authenticate_user, only: [:create]
+
   def create
-    return redirect_to '/', alert: "Login or Signup first" unless current_user
     @prompt = Prompt.find(params[:prompt_id])
-    @response = Response.new(response_params)
+    @response = @prompt.responses.new(response_params)
     @response.user_id = current_user.id
-    @response.prompt_id = @prompt.id
 
     if @response.save
       redirect_to @prompt

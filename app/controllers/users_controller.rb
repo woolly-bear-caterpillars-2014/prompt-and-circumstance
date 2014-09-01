@@ -4,13 +4,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    #@user = User.new(user_params)
 
-    if @user.save
+    if @user = User.create(user_params)
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      p @user.errors
+      #p @user.errors
       redirect_to new_user_path, :alert => @user.errors.full_messages.join(". ")
     end
   end

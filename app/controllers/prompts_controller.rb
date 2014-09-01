@@ -1,4 +1,5 @@
 class PromptsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create]
 
   def index
     @prompts = Prompt.order("created_at DESC")
@@ -10,12 +11,12 @@ class PromptsController < ApplicationController
   end
 
   def new
-    return redirect_to '/', alert: "Login or Signup first" unless current_user
+    #return redirect_to root_path, alert: "Login or Signup first" unless current_user
     @prompt = current_user.prompts.build
   end
 
   def create
-    return redirect_to '/', alert: "Login or Signup first" unless current_user
+    #return redirect_to root_path, alert: "Login or Signup first" unless current_user
 
     @prompt = current_user.prompts.build(prompt_params)
     if @prompt.save

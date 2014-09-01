@@ -1,12 +1,12 @@
 class VotesController < ApplicationController
-
+  before_action :authenticate_user
   # EDDIE:
   #we should use separate routes + controller actions for votes on Prompts and Responses - we'll handle prompts- take the responses
 
   ### Prompt Vote Create
   # TODO: Fat, not DRY controllers here. Refactor both these into a single method, and move logic into helper methods
 
-  def createPromptVote
+  def create_prompt_vote
     @prompt = Prompt.find(params[:vote][:votable_id])
     @vote = @prompt.votes.new(vote_params)
 
@@ -40,7 +40,7 @@ class VotesController < ApplicationController
 # You can only vote once or something.
 
   ### and for Responses
-  def createResponseVote
+  def create_response_vote
     @prompt = Prompt.find(params[:id])
     @response = Response.find([params[:vote][:votable_id]]).first
     @vote = @response.votes.new(vote_params)

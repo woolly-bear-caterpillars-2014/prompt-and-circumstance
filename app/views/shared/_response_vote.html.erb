@@ -7,7 +7,7 @@
 
 	<h4 class="score"><%= response.score || 0 %></h4>
 
-	<%= form_tag({:action => "createResponseVote", :controller => "votes", id: @prompt.id, vote: { votable_id: response.id, polarity: -1, votable_type: response.class }}, remote:true, class: 'vote') do %>
+	<%= form_tag(response_vote_form_params, remote:true, class: 'vote') do %>
 	<button type="submit" class="vote down">
 		<i class="fa fa-arrow-down down"></i>
 	</button>

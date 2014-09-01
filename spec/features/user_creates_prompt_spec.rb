@@ -1,10 +1,7 @@
 require 'rails_helper.rb'
 
 feature "user creates prompt" do
-
-
   scenario 'with valid inputs' do
-
     test_signup
     user_clicks_through_to_new_form_fills_title
 
