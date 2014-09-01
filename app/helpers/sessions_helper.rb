@@ -1,5 +1,5 @@
 module SessionsHelper
-def display_session_links
+  def display_session_links
     if session[:user_id]
       render 'partials/logout'
     else

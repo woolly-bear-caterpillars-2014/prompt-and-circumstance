@@ -28,12 +28,12 @@ describe UsersController do
 
     it "creates a new user" do
       expect{
-	post :create,
-	:user => {
-	  :name => "Bob2",
-	  :email => "bob2@bob.com",
-	  :password => "1234567"
-	}
+      	post :create,
+      	:user => {
+      	  :name => "Bob2",
+      	  :email => "bob2@bob.com",
+      	  :password => "1234567"
+      	}
       }.to change{ User.all.count }.by(1)
     end
 
@@ -60,7 +60,7 @@ describe UsersController do
       expect{ post :create, params }.not_to change{ User.all.count }
     end
 
-    it { should render_template(:new) }
+    it { should redirect_to new_user_path }
 
     it "does not create a new session" do
       expect(session[:user_id]).to be_nil

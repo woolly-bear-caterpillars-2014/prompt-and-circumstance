@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :response do
-    content 'My name is yeff'
+     body 'My name is yeff'
+     user_id 1
+     prompt_id 1
   end
 end
