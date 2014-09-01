@@ -26,6 +26,8 @@ feature 'User votes on a response:' do
 
 	 	expect(current_url).to eq("http://www.example.com/prompts/#{prompt.id}")
 		expect(page.first('h4.score')).to have_content('1')
+
+		
 	 end
 
   scenario 'logged in user clicks downvote' do
