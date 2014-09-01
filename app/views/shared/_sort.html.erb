@@ -1,0 +1,10 @@
+<div class="sort-nav">
+  <ul>
+    <li>
+      <%= link_to "New", root_path , class: 'btn ' + (current_page?(root_path) ? 'btn-warning' : 'btn-secondary') %>
+    </li>
+    <li>
+      <%= link_to "Hot", hot_prompts_path , class: 'btn ' + (current_page?(hot_prompts_path) ? 'btn-warning' : 'btn-secondary') %>
+    </li>
+  </ul>
+</div>

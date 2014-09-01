@@ -1,12 +1,6 @@
-<div class="sort-nav">
-  <ul>
-    <li>
-     <%= link_to "New", root_path  %>
-     <%= link_to "Hot", hot_prompts_path  %>
-    </li>
-  </ul>
-</div>
+
 <div class="prompts grid">
+  <%= render partial: 'shared/sort' %>
   <ul class="content">
   <% @prompts.each do |prompt| %>
   <div class="col-1-3">
