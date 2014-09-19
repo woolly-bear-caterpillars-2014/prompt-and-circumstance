@@ -4,7 +4,7 @@ Prompt and Circumstance
 A DBC student project in the style of reddit.
 
 ## The Team Includes:
-- [Alan Cohen](https://github.com/acjetnut)
+- [Alan Cohen](https://github.com/alancohen)
 - [Garrett Dalton](https://github.com/garrettdalton)
 - [Avi Fox-Rosen](https://github.com/avifoxi)
 - [Eddie Kim](https://github.com/eddiekimosabe)
